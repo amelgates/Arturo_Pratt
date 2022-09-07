@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 1987282839}
   - component: {fileID: 1987282842}
   - component: {fileID: 1987282841}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: flechas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
