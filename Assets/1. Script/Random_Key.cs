@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Random_Key : MonoBehaviour
 {
     private int randomValue;
     private int[] keyList = new int [4];
+    public Sprite[] spriteList;
+    public GameObject panel;
     void Start()
     {
         keyList[0] = (int)KeyCode.LeftArrow;
@@ -28,19 +31,20 @@ public class Random_Key : MonoBehaviour
     }
     void QuickTimeEventCase(int e)
     {
+        panel.SetActive(true);
         switch (keyList[e])
         {
             case 274:
-                Debug.Log("Presiona la flecha abajo");
+                panel.GetComponent<Image>().sprite = spriteList[3];
                 break;
             case 276:
-                Debug.Log("Presiona la flecha izquierda");
+                panel.GetComponent<Image>().sprite = spriteList[0];
                 break;
             case 275:
-                Debug.Log("Presiona la flecha derecha");
+                panel.GetComponent<Image>().sprite = spriteList[1];
                 break;
             case 273:
-                Debug.Log("Presiona la flecha arriba");
+                panel.GetComponent<Image>().sprite = spriteList[2];
                 break;
         }
     }
