@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Random_Key : MonoBehaviour
 {
-    public int randomValue;
+    private int randomValue;
     private int[] keyList = new int [4];
     void Start()
     {
@@ -13,16 +13,35 @@ public class Random_Key : MonoBehaviour
         keyList[2] = (int)KeyCode.UpArrow;
         keyList[3] = (int)KeyCode.DownArrow;
     }
-    void Update(Event e)
+
+    private void Update()
     {
-       randomValue = Random.Range(0, 3);
-       Debug.Log("valor arreglo:" + keyList[randomValue].ToString());
-
-       // switch ((int)e.keyCode)
-       // {
-       //     case 274: 
-       //     default;
-       // }
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            RandomKeyGenerator();
+        }
+    }
+    void RandomKeyGenerator() 
+    {
+        randomValue = Random.Range(0, 4);
+        QuickTimeEventCase(randomValue);
+    }
+    void QuickTimeEventCase(int e)
+    {
+        switch (keyList[e])
+        {
+            case 274:
+                Debug.Log("Presiona la flecha abajo");
+                break;
+            case 276:
+                Debug.Log("Presiona la flecha izquierda");
+                break;
+            case 275:
+                Debug.Log("Presiona la flecha derecha");
+                break;
+            case 273:
+                Debug.Log("Presiona la flecha arriba");
+                break;
+        }
     }
 }
