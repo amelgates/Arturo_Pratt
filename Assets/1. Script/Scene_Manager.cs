@@ -9,14 +9,10 @@ public class Scene_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            gameOverPanel.SetActive(true);
-        }
     }
     public void Restart()
     {
-        SceneManager.LoadScene("pruebas", LoadSceneMode.Single);
+        SceneManager.LoadScene("Video", LoadSceneMode.Single);
     }
 
     public void End()

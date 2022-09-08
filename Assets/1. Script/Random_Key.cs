@@ -13,12 +13,21 @@ public class Random_Key : MonoBehaviour
     public int correctKey;
     public int waitingForKey;
     public int CountingDown;
-    public GameObject videoPlayer;
+    public VideoPlayer videoPlayer;
     public VideoClip[] videoList;
     private int videoIndex;
     public double time;
     public double currentTime;
     public bool videoPlaying;
+    public bool isDone;
+    public GameObject gameOverPanel;
+    public bool isDoned
+    {
+        get
+        {
+            return isDone;
+        }
+    }
 
     private void Awake()
     {
@@ -30,6 +39,29 @@ public class Random_Key : MonoBehaviour
         time = videoPlayer.GetComponent<VideoPlayer>().clip.length;
         videoPlaying = true;
     }
+
+    private void OnEnable()
+    {
+        videoPlayer.loopPointReached += loopPointReached;
+        videoPlayer.prepareCompleted += prepareCompleted;
+    }
+
+    void prepareCompleted(VideoPlayer v)
+    {
+        isDone = false;
+    }
+    void loopPointReached(VideoPlayer v)
+    {
+        isDone = true;
+        Debug.Log("termino el video");
+        waitingForKey = 1;
+
+        videoIndex += 1;
+        if (videoIndex >= 6)
+        {
+            Application.Quit();
+        }
+    }
     void Start()
     {
         keyList[0] = (int)KeyCode.LeftArrow;
@@ -40,21 +72,37 @@ public class Random_Key : MonoBehaviour
 
     private void Update()
     {
-        if (videoPlaying)
+        Debug.Log(isDone);
+        Debug.Log(waitingForKey);
+        if (!isDone)
         {
-            currentTime = videoPlayer.GetComponent<VideoPlayer>().time;
-            if(currentTime >= time)
-            {
-                waitingForKey = 1;
-                videoPlaying = false;
-            }
+            return;
         }
         else
         {
             if (waitingForKey == 1)
             {
                 randomValue = Random.Range(0, 4);
-                QuickTimeEventCase(randomValue);
+                panel.SetActive(true);
+                switch (keyList[randomValue])
+                {
+                    case 274:
+                        panel.SetActive(true);
+                        panel.GetComponent<Image>().sprite = spriteList[3];
+                        break;
+                    case 276:
+                        panel.SetActive(true);
+                        panel.GetComponent<Image>().sprite = spriteList[0];
+                        break;
+                    case 275:
+                        panel.SetActive(true);
+                        panel.GetComponent<Image>().sprite = spriteList[1];
+                        break;
+                    case 273:
+                        panel.SetActive(true);
+                        panel.GetComponent<Image>().sprite = spriteList[2];
+                        break;
+                }
                 CountingDown = 1;
                 waitingForKey = 2;
             }
@@ -62,7 +110,7 @@ public class Random_Key : MonoBehaviour
             {
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown("left"))
+                    if (Input.GetKeyDown(KeyCode.LeftArrow))
                     {
                         correctKey = 1;
                     }
@@ -77,7 +125,7 @@ public class Random_Key : MonoBehaviour
             {
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown("right"))
+                    if (Input.GetKeyDown(KeyCode.RightArrow))
                     {
                         correctKey = 1;
                     }
@@ -92,7 +140,7 @@ public class Random_Key : MonoBehaviour
             {
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown("up"))
+                    if (Input.GetKeyDown(KeyCode.UpArrow))
                     {
                         correctKey = 1;
                     }
@@ -107,7 +155,7 @@ public class Random_Key : MonoBehaviour
             {
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown("down"))
+                    if (Input.GetKeyDown(KeyCode.DownArrow))
                     {
                         correctKey = 1;
                     }
@@ -127,28 +175,17 @@ public class Random_Key : MonoBehaviour
         if (correctKey == 1)
         {
             CountingDown = 2;
-            yield return new WaitForSeconds(1.5f);
             correctKey = 0;
+            videoPlayer.GetComponent<VideoPlayer>().clip = videoList[videoIndex];
+            videoPlayer.Prepare();
         }
+        else
+        {
+            gameOverPanel.SetActive(true);
+            isDone = false;
+        }
+        panel.SetActive(false);
+        yield return null;
     }
 
-    void QuickTimeEventCase(int e)
-    {
-        panel.SetActive(true);
-        switch (keyList[e])
-        {
-            case 274:
-                panel.GetComponent<Image>().sprite = spriteList[3];
-                break;
-            case 276:
-                panel.GetComponent<Image>().sprite = spriteList[0];
-                break;
-            case 275:
-                panel.GetComponent<Image>().sprite = spriteList[1];
-                break;
-            case 273:
-                panel.GetComponent<Image>().sprite = spriteList[2];
-                break;
-        }
-    }
 }

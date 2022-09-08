@@ -1068,6 +1068,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b9ba7abe38edf1b48b3b6a2733238d10, type: 3}
   - {fileID: 21300000, guid: a468bccfe7d88ab41935fa32d31d4fff, type: 3}
   panel: {fileID: 1987282838}
+  correctKey: 0
+  waitingForKey: 0
+  CountingDown: 0
+  videoPlayer: {fileID: 0}
+  videoList: []
+  time: 0
+  currentTime: 0
+  videoPlaying: 0
 --- !u!4 &1979547950
 Transform:
   m_ObjectHideFlags: 0
