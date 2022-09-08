@@ -20,6 +20,7 @@ public class Random_Key : MonoBehaviour
     public double currentTime;
     public bool videoPlaying;
     public bool isDone;
+    public float timer = 3;
     public GameObject gameOverPanel;
     public bool isDoned
     {
@@ -108,6 +109,7 @@ public class Random_Key : MonoBehaviour
             }
             if (randomValue == 0)
             {
+
                 if (Input.anyKeyDown)
                 {
                     if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -123,6 +125,7 @@ public class Random_Key : MonoBehaviour
             }
             if (randomValue == 1)
             {
+
                 if (Input.anyKeyDown)
                 {
                     if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -138,6 +141,7 @@ public class Random_Key : MonoBehaviour
             }
             if (randomValue == 2)
             {
+
                 if (Input.anyKeyDown)
                 {
                     if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -167,6 +171,24 @@ public class Random_Key : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator TimerCoroutine()
+    {
+        if (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            
+            if(timer<= 0)
+            {
+                gameOverPanel.SetActive(true);
+            }
+        }
+        if (correctKey == 1)
+        {
+            timer = 3f;
+        }
+        yield return null;
     }
 
     IEnumerator KeyPressed()
