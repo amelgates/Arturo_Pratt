@@ -18,4 +18,9 @@ public class Scene_Manager : MonoBehaviour
     {
         SceneManager.LoadScene("pruebas", LoadSceneMode.Single);
     }
+
+    public void End()
+    {
+        Application.Quit();
+    }
 }
