@@ -73,8 +73,6 @@ public class Random_Key : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(isDone);
-        Debug.Log(waitingForKey);
         if (!isDone)
         {
             return;
@@ -83,31 +81,35 @@ public class Random_Key : MonoBehaviour
         {
             if (waitingForKey == 1)
             {
-                randomValue = Random.Range(0, 4);
-                panel.SetActive(true);
-                switch (keyList[randomValue])
+                switch (videoIndex)
                 {
-                    case 274:
+                    case 1:
                         panel.SetActive(true);
-                        panel.GetComponent<Image>().sprite = spriteList[3];
+                        panel.GetComponent<Image>().sprite = spriteList[2];
                         break;
-                    case 276:
+                    case 2:
+                        panel.SetActive(true);
+                        panel.GetComponent<Image>().sprite = spriteList[2];
+                        break;
+                    case 3:
                         panel.SetActive(true);
                         panel.GetComponent<Image>().sprite = spriteList[0];
                         break;
-                    case 275:
+                    case 4:
                         panel.SetActive(true);
                         panel.GetComponent<Image>().sprite = spriteList[1];
                         break;
-                    case 273:
+                    case 5:
                         panel.SetActive(true);
-                        panel.GetComponent<Image>().sprite = spriteList[2];
+                        panel.GetComponent<Image>().sprite = spriteList[3];
+                        break;
+                    case 6:
                         break;
                 }
                 CountingDown = 1;
                 waitingForKey = 2;
             }
-            if (randomValue == 0)
+            if (videoIndex == 3)
             {
 
                 if (Input.anyKeyDown)
@@ -123,7 +125,7 @@ public class Random_Key : MonoBehaviour
                     StartCoroutine(KeyPressed());
                 }
             }
-            if (randomValue == 1)
+            if (videoIndex == 4)
             {
 
                 if (Input.anyKeyDown)
@@ -139,7 +141,7 @@ public class Random_Key : MonoBehaviour
                     StartCoroutine(KeyPressed());
                 }
             }
-            if (randomValue == 2)
+            if (videoIndex == 1 || videoIndex == 2)
             {
 
                 if (Input.anyKeyDown)
@@ -155,7 +157,7 @@ public class Random_Key : MonoBehaviour
                     StartCoroutine(KeyPressed());
                 }
             }
-            if (randomValue == 3)
+            if (videoIndex==5)
             {
                 if (Input.anyKeyDown)
                 {
