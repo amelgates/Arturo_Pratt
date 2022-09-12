@@ -81,6 +81,7 @@ public class Random_Key : MonoBehaviour
         {
             if (waitingForKey == 1)
             {
+                StartCoroutine(CountDown());
                 switch (videoIndex)
                 {
                     case 1:
@@ -175,27 +176,25 @@ public class Random_Key : MonoBehaviour
         }
     }
 
-    IEnumerator TimerCoroutine()
+    IEnumerator CountDown()
     {
-        if (timer >= 0)
+        yield return new WaitForSeconds(3);
+        if (CountingDown == 1)
         {
-            timer -= Time.deltaTime;
-            
-            if(timer<= 0)
-            {
-                gameOverPanel.SetActive(true);
-            }
+            waitingForKey = 0;
+            CountingDown = 2;
+            gameOverPanel.SetActive(true);
+            isDone = false;
+            panel.SetActive(false);
         }
-        if (correctKey == 1)
+        else
         {
-            timer = 3f;
+            yield return null;
         }
-        yield return null;
     }
 
     IEnumerator KeyPressed()
     {
-        randomValue = 4;
         if (correctKey == 1)
         {
             CountingDown = 2;
