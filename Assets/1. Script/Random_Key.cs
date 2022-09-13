@@ -6,7 +6,6 @@ using UnityEngine.Video;
 
 public class Random_Key : MonoBehaviour
 {
-    private int randomValue;
     private int[] keyList = new int [4];
     public Sprite[] spriteList;
     public GameObject panel;
@@ -22,6 +21,7 @@ public class Random_Key : MonoBehaviour
     public bool isDone;
     public float timer = 3;
     public GameObject gameOverPanel;
+    public GameObject creditsPanel;
     public bool isDoned
     {
         get
@@ -35,7 +35,6 @@ public class Random_Key : MonoBehaviour
         videoIndex = 0;
         waitingForKey = 0;
         CountingDown = 0;
-        randomValue = 5;
         videoPlayer.GetComponent<VideoPlayer>().clip = videoList[videoIndex];
         time = videoPlayer.GetComponent<VideoPlayer>().clip.length;
         videoPlaying = true;
@@ -60,7 +59,7 @@ public class Random_Key : MonoBehaviour
         videoIndex += 1;
         if (videoIndex >= 6)
         {
-            Application.Quit();
+            creditsPanel.SetActive(true);
         }
     }
     void Start()
