@@ -25,6 +25,7 @@ public class Random_Key : MonoBehaviour
     [SerializeField] private Image uiFill;
     public float duration;
     public GameObject imageParent;
+    public GameObject pauseMenu;
     public bool isDoned
     {
         get
@@ -77,6 +78,23 @@ public class Random_Key : MonoBehaviour
     {
         if (!isDone)
         {
+            if(gameOverPanel.activeSelf == false)
+            {
+                if (Input.GetKeyDown("escape"))
+                {
+                    if (pauseMenu.activeSelf == true)
+                    {
+                        videoPlayer.Play();
+                        pauseMenu.SetActive(false);
+                    }
+                    else
+                    {
+                        videoPlayer.Pause();
+                        pauseMenu.SetActive(true);
+
+                    }
+                }
+            }
             return;
         }
         else
@@ -211,6 +229,7 @@ public class Random_Key : MonoBehaviour
 
     IEnumerator KeyPressed()
     {
+        imageParent.SetActive(false);
         if (correctKey == 1)
         {
             CountingDown = 2;
@@ -220,8 +239,8 @@ public class Random_Key : MonoBehaviour
         }
         else
         {
+            videoPlayer.GetComponent<VideoPlayer>().clip = null;
             gameOverPanel.SetActive(true);
-            isDone = false;
         }
         panel.SetActive(false);
         yield return null;
