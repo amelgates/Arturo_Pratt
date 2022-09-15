@@ -6,7 +6,7 @@ using UnityEngine.Video;
 
 public class Random_Key : MonoBehaviour
 {
-    private int[] keyList = new int [4];
+    private int[] keyList = new int[4];
     public Sprite[] spriteList;
     public GameObject panel;
     public int correctKey;
@@ -22,6 +22,9 @@ public class Random_Key : MonoBehaviour
     public float timer = 3;
     public GameObject gameOverPanel;
     public GameObject creditsPanel;
+    [SerializeField] private Image uiFill;
+    public float duration;
+    public GameObject imageParent;
     public bool isDoned
     {
         get
@@ -80,6 +83,7 @@ public class Random_Key : MonoBehaviour
         {
             if (waitingForKey == 1)
             {
+                StartCoroutine(UpdateTimer());
                 StartCoroutine(CountDown());
                 switch (videoIndex)
                 {
@@ -175,9 +179,22 @@ public class Random_Key : MonoBehaviour
         }
     }
 
+    IEnumerator UpdateTimer()
+    {
+        duration = 2;
+        imageParent.SetActive(true);
+        while(duration >= 0)
+        {
+            uiFill.fillAmount = Mathf.InverseLerp(0, 2, duration);
+            duration = duration - 0.1f;
+            yield return new WaitForSeconds(.1f);
+        }
+        imageParent.SetActive(false);
+    }
+
     IEnumerator CountDown()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2.2f);
         if (CountingDown == 1)
         {
             waitingForKey = 0;
