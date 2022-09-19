@@ -101,27 +101,35 @@ public class Random_Key : MonoBehaviour
         {
             if (waitingForKey == 1)
             {
-                StartCoroutine(UpdateTimer());
-                StartCoroutine(CountDown());
                 switch (videoIndex)
                 {
                     case 1:
+                        StartCoroutine(UpdateTimer());
+                        StartCoroutine(CountDown());
                         panel.SetActive(true);
                         panel.GetComponent<Image>().sprite = spriteList[2];
                         break;
                     case 2:
+                        StartCoroutine(UpdateTimer());
+                        StartCoroutine(CountDown());
                         panel.SetActive(true);
                         panel.GetComponent<Image>().sprite = spriteList[2];
                         break;
                     case 3:
+                        StartCoroutine(UpdateTimer());
+                        StartCoroutine(CountDown());
                         panel.SetActive(true);
                         panel.GetComponent<Image>().sprite = spriteList[0];
                         break;
                     case 4:
+                        StartCoroutine(UpdateTimer());
+                        StartCoroutine(CountDown());
                         panel.SetActive(true);
                         panel.GetComponent<Image>().sprite = spriteList[1];
                         break;
                     case 5:
+                        StartCoroutine(UpdateTimer());
+                        StartCoroutine(CountDown());
                         panel.SetActive(true);
                         panel.GetComponent<Image>().sprite = spriteList[3];
                         break;
