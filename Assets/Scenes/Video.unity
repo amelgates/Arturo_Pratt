@@ -466,10 +466,10 @@ MonoBehaviour:
   CountingDown: 0
   videoPlayer: {fileID: 171526053}
   videoList:
-  - {fileID: 32900000, guid: d15a5863621bc134786161f165deae88, type: 3}
-  - {fileID: 32900000, guid: 2066509a389229b4dbfaf9999daaa34b, type: 3}
-  - {fileID: 32900000, guid: 6ec1867492ed92e4fb1a1fc81a2a3332, type: 3}
-  - {fileID: 32900000, guid: 4266b3a4d8565f5488d5a612f4af01ef, type: 3}
+  - {fileID: 32900000, guid: 60d92eaf842ee8a4593b433637f57949, type: 3}
+  - {fileID: 32900000, guid: 6c293d0b6d1e5df429f5e02480c7f768, type: 3}
+  - {fileID: 32900000, guid: 85d809b35c349124fae0e516d29c02f1, type: 3}
+  - {fileID: 32900000, guid: 570b0a00e0edd86429f292d86ba9d9e1, type: 3}
   - {fileID: 32900000, guid: e6037296c3a9e7342b0d26713f9e863f, type: 3}
   - {fileID: 32900000, guid: 38f32ae784b2da34baea46248f884b4f, type: 3}
   time: 0
@@ -1204,7 +1204,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 26c0da88ff5bcff46961350b88db5455, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.455
+  m_Volume: 0.095
   m_Pitch: 1
   Loop: 1
   Mute: 0
